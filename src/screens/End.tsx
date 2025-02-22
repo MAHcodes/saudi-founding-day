@@ -9,11 +9,11 @@ function End() {
   return (
     <div className="flex flex-col gap-4">
       <h2 className="text-xl text-center">
-        أحسنت
-        &nbsp;
+        كفوو يا &nbsp;
         {user.name}
+        🫡
       </h2>
-      <Button onClick={restart}>Restart</Button>
+      <Button onClick={restart}>إلعب أسئلة جديدة</Button>
     </div>
   );
 }

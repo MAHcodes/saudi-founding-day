@@ -4,6 +4,12 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { useReward } from "react-rewards";
 
+enum State {
+  None,
+  Correct,
+  Wrong,
+}
+
 export default function Option({
   q,
   k,
@@ -15,16 +21,24 @@ export default function Option({
 }) {
   const { reward: confettiReward } = useReward("confettiReward", "confetti");
   const { validate, answer } = useQuiz();
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [state, setState] = useState<State>(State.None);
+
+  const isCorrect = state === State.Correct;
+  const isWrong = state === State.Wrong;
 
   const handleClick = () => {
+    if (isCorrect) return;
     if (validate(q, k)) {
-      answer(q, k);
       confettiReward();
-    } else {
-      setIsAnimating(true);
+      setState(State.Correct);
       setTimeout(() => {
-        setIsAnimating(false);
+        setState(State.None);
+        answer(q, k);
+      }, 750);
+    } else {
+      setState(State.Wrong);
+      setTimeout(() => {
+        setState(State.None);
       }, 300);
     }
   };
@@ -32,7 +46,7 @@ export default function Option({
   return (
     <motion.div
       animate={
-        isAnimating
+        isWrong
           ? {
               x: [0, -5, 5, -5, 5, -5, 5, 0],
               y: [0, -2, 2, 2, -2, 2, -2, 0],
@@ -42,8 +56,11 @@ export default function Option({
       transition={{ duration: 0.3 }}
     >
       <Button
-        className="w-full grid grid-cols-12"
-        disabled={isAnimating}
+        className="w-full grid grid-cols-12 h-auto"
+        style={{
+          backgroundColor: isCorrect ? "rgb(46, 157, 46)" : "",
+        }}
+        disabled={isWrong}
         variant="default"
         onClick={handleClick}
       >
