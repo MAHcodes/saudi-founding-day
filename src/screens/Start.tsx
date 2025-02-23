@@ -20,7 +20,7 @@ function Start() {
     <div className="flex flex-col gap-4">
       <h2 className="text-xl text-center">مرحبا أدخل إسمك للبدء!</h2>
       <Input ref={nameRef} />
-      <Button onClick={start}>إبدأ</Button>
+      <Button onClick={start}>ابدء</Button>
     </div>
   );
 }

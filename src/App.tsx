@@ -1,5 +1,6 @@
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import QR from "./components/QR";
 import Screens from "./screens";
 import Desert from "@/assets/desert.svg";
 
@@ -15,6 +16,7 @@ function App() {
         />
       </div>
       <Footer />
+      <QR />
       <img
         className="fixed top-0 -translate-x-1/2 -translate-y-1/2 h-2/3 left-1/2 -z-[-1] opacity-10 pointer-events-none"
         src="/bg.svg"
