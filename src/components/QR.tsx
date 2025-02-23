@@ -39,7 +39,7 @@ export default function QR() {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <div className="flex justify-center">
-            <img className="w-full h-auto max-w-xs" src="/qr.webp" alt="" />
+            <img className="w-full h-auto max-w-xs" src="/qr.png" alt="" />
           </div>
           <AlertDialogFooter>
             <AlertDialogCancel className="w-full">Cancel</AlertDialogCancel>
